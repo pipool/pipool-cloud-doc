@@ -1,18 +1,24 @@
 openapi: 3.0.1
+
 info:
   title: Pipool API
   version: 1.0.0
+
 servers:
   - url: http://localhost:8080/api
     description: Local Docker development
+
 tags:
-- name: users
+- name: Authentication
+  description: Users authentication and sign up
+- name: User
   description: Users related endpoints
+
 paths:
   /users/login:
     post:
       tags:
-      - users
+      - Authentication
       summary: Log in a new user
       requestBody:
         description: User object to create and log in
@@ -35,12 +41,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Authentication'
+                type: object
+                properties:
+                  data:
+                    type: object
+                    $ref: '#/components/schemas/User'
+
       x-codegen-request-body-name: body
+
   /users/sign-up:
     post:
       tags:
-      - users
+      - Authentication
       summary: Create and log in a new user
       requestBody:
         description: User object to create and log in
@@ -55,7 +67,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Authentication'
+                type: object
+                properties:
+                  data:
+                    type: object
+                    $ref: '#/components/schemas/Authentication'
         422:
           description: Email already created
           content:
@@ -63,7 +79,79 @@ paths:
               schema:
                 $ref: '#/components/schemas/ValidationError'
       x-codegen-request-body-name: body
+
+  /users:
+    post:
+      summary: Get authenticated user information
+      tags:
+      - User
+      security:
+        - bearerAuth: []
+      responses:
+        200:
+          description: User information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    $ref: '#/components/schemas/User'
+      x-codegen-request-body-name: body
+
+  /users/{id}:
+    post:
+      summary: Get user information by ID
+      tags:
+      - User
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Valid user id
+      responses:
+        200:
+          description: User information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    $ref: '#/components/schemas/User'
+      x-codegen-request-body-name: body
+
+  /users/locations:
+    post:
+      summary: Update last location of current logged user
+      tags:
+      - User
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: User object to create and log in
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Location'
+      responses:
+        201:
+          description: Location updated succesfully
+      x-codegen-request-body-name: body
+
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
   schemas:
     User:
       required:
@@ -73,22 +161,46 @@ components:
       properties:
         id:
           type: integer
+          example: 1
         name:
           type: string
+          example: "Victor"
         surname:
           type: string
+          example: "Falcón"
         email:
           type: string
+          example: "victor@proaas.com"
         password:
           type: string
+          example: "password-hash"
+
+    Location:
+      required:
+      - latitude
+      - longitude
+      type: object
+      properties:
+        latitude:
+          type: number
+          example: 31.653381
+        longitude:
+          type: number
+          example: 1.562536
+
     Authentication:
       type: object
       properties:
         token:
           type: string
           description: Bearer token for authenticated endpoints
-        user:
-          $ref: '#/components/schemas/User'
+          example: 'any-randon-token-to-authenticate-user'
+        included:
+          type: object
+          properties:
+            user:
+              $ref: '#/components/schemas/User'
+
     ValidationError:
       type: object
       properties:
@@ -99,8 +211,9 @@ components:
         errors:
           type: object
           properties:
-            $fieldName:
+            field:
               type: array
+              description: Name of the field that are triggering the error
               items:
                 type: string
                 description: Error description
