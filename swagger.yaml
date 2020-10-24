@@ -559,7 +559,7 @@ components:
         token:
           type: string
           description: Bearer token for authenticated endpoints
-          example: 'any-randon-token-to-authenticate-user'
+          example: 'any-random-token-to-authenticate-user'
         included:
           type: object
           properties:
