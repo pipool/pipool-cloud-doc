@@ -44,7 +44,6 @@ paths:
                 type: object
                 properties:
                   data:
-                    type: object
                     $ref: '#/components/schemas/User'
 
       x-codegen-request-body-name: body
@@ -59,7 +58,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              allOf:
+                - $ref: '#/components/schemas/User'
+                - type: object
+                  properties:
+                    password:
+                      type: string
+                      example: hashed-password
         required: true
       responses:
         200:
@@ -70,7 +75,6 @@ paths:
                 type: object
                 properties:
                   data:
-                    type: object
                     $ref: '#/components/schemas/Authentication'
         422:
           description: Email already created
@@ -96,7 +100,6 @@ paths:
                 type: object
                 properties:
                   data:
-                    type: object
                     $ref: '#/components/schemas/User'
       x-codegen-request-body-name: body
 
@@ -123,7 +126,6 @@ paths:
                 type: object
                 properties:
                   data:
-                    type: object
                     $ref: '#/components/schemas/User'
       x-codegen-request-body-name: body
 
@@ -171,9 +173,6 @@ components:
         email:
           type: string
           example: "victor@proaas.com"
-        password:
-          type: string
-          example: "password-hash"
 
     Location:
       required:
