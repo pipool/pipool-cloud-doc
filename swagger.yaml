@@ -107,6 +107,7 @@ paths:
 
   /users:
     get:
+      deprecated: true
       summary: Get authenticated user information
       tags:
       - User
@@ -126,6 +127,7 @@ paths:
 
   /users/{id}:
     get:
+      deprecated: true
       summary: Get user information by ID
       tags:
       - User
@@ -152,6 +154,7 @@ paths:
 
   /users/locations:
     post:
+      deprecated: true
       summary: Update last location of current logged user
       tags:
       - User
@@ -170,6 +173,7 @@ paths:
 
   /services:
     get:
+      deprecated: true
       summary: Get a list of current user services
       tags:
       - Services
@@ -215,6 +219,7 @@ paths:
 
   /services/search:
     get:
+      deprecated: true
       summary: Get a list of current user services
       tags:
       - Services
@@ -298,6 +303,7 @@ paths:
                                   $ref: '#/components/schemas/User'
 
     post:
+      deprecated: true
       summary: Create new service
       tags:
         - Services
@@ -332,6 +338,7 @@ paths:
 
   /services/{id}:
     get:
+      deprecated: true
       summary: Get a single service
       tags:
         - Services
@@ -373,6 +380,7 @@ paths:
 
   /services/{id}/products:
     post:
+      deprecated: true
       summary: Create new product for a service
       tags:
         - Services
@@ -409,6 +417,7 @@ paths:
 
   /services/{serviceId}/products/{productId}:
     delete:
+      deprecated: true
       summary: Delete a product
       tags:
         - Services
@@ -430,6 +439,7 @@ paths:
           description: Product deleted succesfully
 
     put:
+      deprecated: true
       summary: Update product
       tags:
         - Services
@@ -472,6 +482,7 @@ paths:
 
   /categories:
     get:
+      deprecated: true
       summary: Get the full category list
       tags:
         - Categories
