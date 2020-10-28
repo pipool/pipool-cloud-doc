@@ -46,8 +46,17 @@ paths:
                 type: object
                 properties:
                   data:
-                    $ref: '#/components/schemas/User'
-
+                    $ref: '#/components/schemas/Authentication'
+        403:
+          description: Bad credentials
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Bad credentials"
       x-codegen-request-body-name: body
 
   /users/sign-up:
@@ -60,13 +69,23 @@ paths:
         content:
           application/json:
             schema:
-              allOf:
-                - $ref: '#/components/schemas/User'
-                - type: object
-                  properties:
-                    password:
-                      type: string
-                      example: hashed-password
+              required:
+                - email
+                - password
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Victor"
+                surname:
+                  type: string
+                  example: "Falcón"
+                email:
+                  type: string
+                  example: "victor@proaas.com"
+                password:
+                  type: string
+                  example: "any-password"
         required: true
       responses:
         200:
@@ -173,9 +192,9 @@ paths:
                           type: object
                           properties:
                             createdAt:
-                              type: integer
-                              example: 1603553716
-                              description: Timestamp of creationg date in seconds
+                              type: string
+                              example: "2020-10-28T18:34:33.000000Z"
+                              description: Date
                       - items:
                           type: object
                           properties:
@@ -255,9 +274,9 @@ paths:
                           type: object
                           properties:
                             createdAt:
-                              type: integer
-                              example: 1603553716
-                              description: Timestamp of creationg date in seconds
+                              type: string
+                              example: "2020-10-28T18:34:33.000000Z"
+                              description: Date
                       - items:
                           type: object
                           properties:
@@ -305,9 +324,9 @@ paths:
                     - $ref: '#/components/schemas/Service'
                     - properties:
                         createdAt:
-                          type: integer
-                          example: 1603553716
-                          description: Timestamp of creationg date in seconds
+                          type: string
+                          example: "2020-10-28T18:34:33.000000Z"
+                          description: Date
 
       x-codegen-request-body-name: body
 
@@ -332,9 +351,9 @@ paths:
                       - $ref: '#/components/schemas/Service'
                       - properties:
                           createdAt:
-                            type: integer
-                            example: 1603553716
-                            description: Timestamp of creationg date in seconds
+                            type: string
+                            example: "2020-10-28T18:34:33.000000Z"
+                            description: Date
                       - properties:
                           included:
                             type: object
@@ -496,9 +515,13 @@ components:
           type: string
           example: "victor@proaas.com"
         createdAt:
-          type: int
-          example: 1603553716
-          description: Timestamp in seconds
+          type: string
+          example: "2020-10-28T18:34:33.000000Z"
+          description: Creation date
+        updatedAt:
+          type: string
+          example: "2020-10-28T18:34:33.000000Z"
+          description: Update date
 
     Location:
       required:
@@ -560,11 +583,9 @@ components:
           type: string
           description: Bearer token for authenticated endpoints
           example: 'any-random-token-to-authenticate-user'
-        included:
-          type: object
-          properties:
-            user:
-              $ref: '#/components/schemas/User'
+        user:
+          allOf:
+            - $ref: '#/components/schemas/User'
 
     ValidationError:
       type: object
