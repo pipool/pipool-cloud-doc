@@ -482,7 +482,6 @@ paths:
 
   /categories:
     get:
-      deprecated: true
       summary: Get the full category list
       tags:
         - Categories
