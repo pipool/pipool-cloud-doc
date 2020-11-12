@@ -1,0 +1,8 @@
+type: object
+properties:
+  name:
+    type: string
+    example: Clases de piano online
+  category_id:
+    type: integer
+    example: 1

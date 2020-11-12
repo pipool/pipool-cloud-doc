@@ -1,0 +1,11 @@
+type: object
+properties:
+  id:
+    type: integer
+    example: 1
+  name:
+    type: string
+    example: Limpieza
+  image:
+    type: string
+    example: https://url.com/image.png

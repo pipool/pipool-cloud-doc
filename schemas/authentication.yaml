@@ -1,0 +1,9 @@
+type: object
+properties:
+  token:
+    type: string
+    description: Bearer token for authenticated endpoints
+    example: 'any-random-token-to-authenticate-user'
+  user:
+    allOf:
+      - $ref: ./user.yaml

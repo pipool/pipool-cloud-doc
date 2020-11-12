@@ -1,0 +1,5 @@
+get:
+  $ref: ./services/get.yaml
+
+post:
+  $ref: ./services/post.yaml

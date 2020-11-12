@@ -1,0 +1,16 @@
+type: object
+properties:
+  message:
+    type: string
+    description: Error description
+    example: The given data was invalid
+  errors:
+    type: object
+    properties:
+      field:
+        type: array
+        description: Name of the field that are triggering the error
+        items:
+          type: string
+          description: Error description
+    description: List of fields failing

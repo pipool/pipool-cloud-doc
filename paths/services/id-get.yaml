@@ -1,0 +1,24 @@
+summary: Get a single service
+tags:
+  - Services
+security:
+  - bearerAuth: [ ]
+parameters:
+  - in: path
+    name: id
+    schema:
+      type: integer
+    required: true
+    description: Valid service id
+responses:
+  200:
+    description: List of services
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            data:
+              type: object
+              allOf:
+                - $ref: ../../schemas/service-full.yaml

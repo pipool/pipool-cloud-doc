@@ -1,0 +1,19 @@
+summary: Create new service
+tags:
+  - Services
+security:
+  - bearerAuth: [ ]
+requestBody:
+  description: Service to create
+  content:
+    application/json:
+      schema:
+        $ref: ../../schemas/service.yaml
+  required: true
+responses:
+  200:
+    description: Created service
+    content:
+      application/json:
+        schema:
+          $ref: ../../schemas/service-full.yaml

@@ -1,0 +1,44 @@
+post:
+  tags:
+    - Authentication
+  summary: Create and log in a new user
+
+  requestBody:
+    description: User object to create and log in
+    content:
+      application/json:
+        schema:
+          required:
+            - email
+            - password
+          type: object
+          properties:
+            name:
+              type: string
+              example: "Victor"
+            surname:
+              type: string
+              example: "Falcón"
+            email:
+              type: string
+              example: "victor@proaas.com"
+            password:
+              type: string
+              example: "any-password"
+    required: true
+
+  responses:
+
+    200:
+      description: User created and log in
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/authentication.yaml
+
+    422:
+      description: Email already created
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/validation-error.yaml

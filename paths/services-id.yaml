@@ -1,0 +1,8 @@
+get:
+  $ref: ./services/id-get.yaml
+
+put:
+  $ref: ./services/id-update.yaml
+
+delete:
+  $ref: ./services/id-delete.yaml

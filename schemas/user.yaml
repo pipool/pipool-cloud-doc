@@ -1,0 +1,22 @@
+type: object
+properties:
+  id:
+    type: integer
+    example: 1
+  name:
+    type: string
+    example: "Victor"
+  surname:
+    type: string
+    example: "Falcón"
+  email:
+    type: string
+    example: "victor@proaas.com"
+  created_at:
+    type: string
+    example: "2020-10-28T18:34:33.000000Z"
+    description: Creation date
+  updated_at:
+    type: string
+    example: "2020-10-28T18:34:33.000000Z"
+    description: Update date
