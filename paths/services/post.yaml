@@ -16,4 +16,9 @@ responses:
     content:
       application/json:
         schema:
-          $ref: ../../schemas/service-full.yaml
+          type: object
+          properties:
+            data:
+              type: object
+              allOf:
+                - $ref: ../../schemas/service-full.yaml

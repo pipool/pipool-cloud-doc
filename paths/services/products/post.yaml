@@ -1,0 +1,31 @@
+summary: Create new product for a service
+tags:
+  - Products
+security:
+  - bearerAuth: [ ]
+parameters:
+  - in: path
+    name: id
+    schema:
+      type: integer
+    required: true
+    description: Valid service id
+requestBody:
+  description: Product to create
+  content:
+    application/json:
+      schema:
+        $ref: ../../../schemas/product.yaml
+  required: true
+responses:
+  200:
+    description: Created product
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            data:
+              type: object
+              allOf:
+                - $ref: ../../../schemas/product-full.yaml

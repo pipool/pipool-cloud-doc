@@ -1,0 +1,25 @@
+summary: Get all products from service
+tags:
+  - Products
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: id
+    schema:
+      type: integer
+    required: true
+    description: Valid service id
+responses:
+  200:
+    description: List of services
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            data:
+              type: array
+              allOf:
+                - items:
+                    $ref: ../../../schemas/product-full.yaml

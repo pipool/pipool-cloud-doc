@@ -1,0 +1,37 @@
+summary: Update product
+tags:
+  - Products
+security:
+  - bearerAuth: [ ]
+parameters:
+  - in: path
+    name: id
+    schema:
+      type: integer
+    required: true
+    description: Valid service id
+  - in: path
+    name: product
+    schema:
+      type: integer
+    required: true
+    description: Valid product id
+requestBody:
+  description: Product to create
+  content:
+    application/json:
+      schema:
+        $ref: ../../../schemas/product.yaml
+  required: true
+responses:
+  200:
+    description: Updated product
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            data:
+              type: object
+              allOf:
+                - $ref: ../../../schemas/product-full.yaml

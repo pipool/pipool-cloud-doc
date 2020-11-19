@@ -1,0 +1,12 @@
+type: object
+properties:
+  name:
+    type: string
+    example: Desde casa
+  description:
+    type: string
+    example: Clases de piano online de 1 hora por videollamada
+  price:
+    type: integer
+    example: 2400
+    description: Price in cents

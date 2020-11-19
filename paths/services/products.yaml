@@ -1,0 +1,5 @@
+get:
+  $ref: ./products/get.yaml
+
+post:
+  $ref: ./products/post.yaml

@@ -29,6 +29,12 @@ paths:
   /services/{id}:
     $ref: ./paths/services-id.yaml
 
+  /services/{id}/products:
+    $ref: ./paths/services/products.yaml
+
+  /services/{id}/products/{product}:
+    $ref: ./paths/services/products-id.yaml
+
   /categories:
     $ref: ./paths/categories/get.yaml
 
@@ -60,18 +66,7 @@ components:
       $ref: ./schemas/service-full.yaml
 
     Product:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Desde casa
-        description:
-          type: string
-          example: Clases de piano online de 1 hora por videollamada
-        price:
-          type: integer
-          example: 2400
-          description: Price in cents
+      $ref: ./schemas/product-full.yaml
 
     Category:
       $ref: ./schemas/category.yaml

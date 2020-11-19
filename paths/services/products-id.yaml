@@ -1,0 +1,5 @@
+put:
+  $ref: ./products/id-update.yaml
+
+delete:
+  $ref: ./products/id-delete.yaml

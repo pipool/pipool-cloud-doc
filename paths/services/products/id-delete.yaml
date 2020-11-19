@@ -1,0 +1,21 @@
+summary: Delete product
+tags:
+  - Products
+security:
+  - bearerAuth: [ ]
+parameters:
+  - in: path
+    name: id
+    schema:
+      type: integer
+    required: true
+    description: Valid service id
+  - in: path
+    name: product
+    schema:
+      type: integer
+    required: true
+    description: Valid product id
+responses:
+  204:
+    description: Product deleted
